@@ -11,53 +11,55 @@ This is an example POM that uses BungeePlayerTracker.
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.birthdates</groupId>
-    <artifactId>JSONSystemTest</artifactId>
+    <artifactId>BungeePlayerTrackerTest</artifactId>
     <version>1.0-SNAPSHOT</version>
     
     <!-- REQUIRED !-->
     <repositories>
-        <!-- Add the JSON System repo via GitHub !-->
+        <!-- Add the BungeePlayerTracker repo via GitHub !-->
         <repository>
-            <id>jsonsystem-repo</id>
+            <id>bungeeplayertracker-repo</id>
             <url>https://raw.githubusercontent.com/birthdates/BungeePlayerTracker/repository/</url>
         </repository>
     </repositories>
 
     <dependencies>
-        <!-- Add the JSON System dependency and scope compile !-->
+        <!-- Add the BungeePlayerTracker dependency and scope compile !-->
         <dependency>
             <groupId>com.birthdates</groupId>
-            <artifactId>JSONSystem</artifactId>
+            <artifactId>BungeePlayerTracker</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
 </project>
 ```
-This is an example class that would save/load a JSON file (test.json)
+This is an example class that would track two server's data (Factions, Skyblock)
 ```java
-import com.birthdates.jsonsystem.JSONFile;
-import com.google.gson.annotations.SerializedName;
+import com.birthdates.bungeeplayertracker.BungeePlayerTracker;
+import com.birthdates.bungeeplayertracker.ServerData;
 import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.java.JavaPlugin;
 
-public class TestFile extends JSONFile {
+import java.util.logging.Level;
 
-    public class Data {
-        @SerializedName("Test")
-        private String test;
-        @GsonIgnore
-        private String formattedTest;
-        
-        public Data(String test) {
-            this.test = test;
-            this.formattedTest = this.test.replace("test", "Test");
-        }
+public class BungeePlayerTrackerTest extends JavaPlugin {
+
+    private BungeePlayerTracker playerTracker;
+
+    public void onEnable() {
+        playerTracker = new BungeePlayerTracker();
+
+        playerTracker.init(this, 3); //Update server data every 3 seconds
+        playerTracker.startTracking("factions", "127.0.0.1:25566");
+        playerTracker.startTracking("skyblock", "127.0.0.1:25567");
+
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(this, () -> {
+            ServerData skyblockData = playerTracker.getServerData("skyblock");
+            Bukkit.getLogger().log(Level.WARNING, "Skyblock is currently " + (skyblockData.isOnline() ? "online with " + skyblockData.getPlayers() + " players" : "offline") + ".");
+        }, 0L, 20L);
     }
 
-    public TestFile(Plugin plugin) {
-        super(plugin, "test");
-        getData(Data.class); 
-    }
 }
+
 ```
