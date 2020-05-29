@@ -17,6 +17,7 @@ public class ServerData {
 
     public ServerData(String IP) {
         if(IP == null) {
+            online = true;
             return;
         }
         try {
