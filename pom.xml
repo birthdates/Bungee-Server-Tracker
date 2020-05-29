@@ -14,11 +14,6 @@
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
-        <!-- Add the JSON System repo via GitHub !-->
-        <repository>
-            <id>jsonsystem-repo</id>
-            <url>https://raw.githubusercontent.com/birthdates/JSONSystem/repository/</url>
-        </repository>
     </repositories>
 
     <dependencies>
