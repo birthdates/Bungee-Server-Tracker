@@ -1,4 +1,4 @@
-package com.birthdates.bungeeplayertracker;
+package com.birthdates.bungeeservertracker;
 
 import lombok.Getter;
 import lombok.Setter;

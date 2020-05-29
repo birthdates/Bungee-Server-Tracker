@@ -1,4 +1,4 @@
-package com.birthdates.bungeeplayertracker;
+package com.birthdates.bungeeservertracker;
 
 import com.google.common.io.ByteArrayDataInput;
 import com.google.common.io.ByteArrayDataOutput;
@@ -16,7 +16,7 @@ import java.util.Optional;
 
 import static org.bukkit.Bukkit.getServer;
 
-public class BungeePlayerTracker {
+public class BungeeServerTracker {
 
     private Plugin plugin;
 

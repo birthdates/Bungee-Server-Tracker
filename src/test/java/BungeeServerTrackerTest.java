@@ -1,16 +1,16 @@
-import com.birthdates.bungeeplayertracker.BungeePlayerTracker;
-import com.birthdates.bungeeplayertracker.ServerData;
+import com.birthdates.bungeeservertracker.BungeeServerTracker;
+import com.birthdates.bungeeservertracker.ServerData;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.logging.Level;
 
-public class BungeePlayerTrackerTest extends JavaPlugin {
+public class BungeeServerTrackerTest extends JavaPlugin {
 
-    private BungeePlayerTracker playerTracker;
+    private BungeeServerTracker playerTracker;
 
     public void onEnable() {
-        playerTracker = new BungeePlayerTracker();
+        playerTracker = new BungeeServerTracker();
 
         playerTracker.init(this, 3);
         playerTracker.startTracking("factions", "127.0.0.1:25566");
