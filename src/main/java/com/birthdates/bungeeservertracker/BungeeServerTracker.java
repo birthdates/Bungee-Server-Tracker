@@ -60,6 +60,10 @@ public class BungeeServerTracker {
         return serverData.get(server);
     }
 
+    public int getGlobalPlayers() {
+        return serverData.values().stream().mapToInt(ServerData::getPlayers).sum();
+    }
+
     private void startUpdating(long updateInterval) {
         taskID = Bukkit.getScheduler().scheduleAsyncRepeatingTask(plugin, () -> {
             Optional<? extends Player> potentialPlayer =  Bukkit.getOnlinePlayers().stream().findAny();
