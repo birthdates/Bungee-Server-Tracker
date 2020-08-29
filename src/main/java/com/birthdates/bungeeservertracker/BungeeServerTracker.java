@@ -110,10 +110,10 @@ public class BungeeServerTracker {
 
     private boolean isServerOnline(String IP, int port) {
         try {
-            Socket s = new Socket();
-            s.connect(new InetSocketAddress(IP, port), 15);
-            s.close();
-        } catch (Exception e) {
+            Socket socket = new Socket();
+            socket.connect(new InetSocketAddress(IP, port), 15);
+            socket.close();
+        } catch (Exception ignored) {
             return false;
         }
         return true;
