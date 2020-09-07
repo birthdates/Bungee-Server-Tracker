@@ -53,11 +53,8 @@ public class BungeeServerTracker {
     }
 
     public ServerData getServerData(String server) {
-        if(!serverData.containsKey(server)) {
-            return null;
-        }
 
-        return serverData.get(server);
+        return serverData.getOrDefault(server, null);
     }
 
     public int getGlobalPlayers() {
