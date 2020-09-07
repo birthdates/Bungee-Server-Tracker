@@ -53,7 +53,6 @@ public class BungeeServerTracker {
     }
 
     public ServerData getServerData(String server) {
-
         return serverData.getOrDefault(server, null);
     }
 
